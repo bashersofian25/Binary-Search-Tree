@@ -6,12 +6,12 @@ export const createBinarySearchTree = (inputArr) => {
     };
     const sortedUniqueArray = (arr) => {
         arr.sort((a, b) => {return a - b});
+        console.log(arr);
         return removeDuplicates(arr);
 
     };
     let arr = sortedUniqueArray(inputArr);
-    console.log(arr);
-    const _root = createNode(null, null, arr[arr.length/2]);
+    const _root = createNode(null, null, inputArr[inputArr.length/2]);
     const insert = (value) => {
         let currentNode = _root;
         while (true){
