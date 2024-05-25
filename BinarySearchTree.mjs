@@ -8,13 +8,10 @@ export const createBinarySearchTree = (inputArr) => {
             root.left = buildTree(arr.slice(0, 1));
 
         }else if(arr.length > 3){
-            const rightSubArr = arr.slice(0, arr.length/2);
-            const leftSubArr = arr.slice(arr.length/2 +1 , arr.length);
+            const leftSubArr = arr.slice(0, arr.length/2);
+            const rightSubArr = arr.slice(arr.length/2 +1 , arr.length);
             root.right = buildTree(rightSubArr);
             root.left = buildTree(leftSubArr);
-  
-
-
         }
         return root;
     };
@@ -84,8 +81,22 @@ export const createBinarySearchTree = (inputArr) => {
 
     };
 
-    const find = () => {
+    const find = (value) => {
+        let currentNode = _root;
+        while (true) {
+            if(currentNode === null) {
+                return null;
+            }else if(currentNode.value === value){
+                return currentNode;
+            }else if (currentNode.value > value) {
+                console.log("left:",currentNode.value);
+                currentNode = currentNode.left;
+            }else if (currentNode.value < value) {
+                console.log("right:",currentNode.value);
 
+                currentNode = currentNode.right;
+            }
+        }
     };
 
     const inOrder = (callBack) => {
@@ -105,5 +116,5 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     
-    return {prettyPrint, insert, _root};
+    return {prettyPrint, insert, remove, find};
 }
