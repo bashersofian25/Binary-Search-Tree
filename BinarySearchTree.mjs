@@ -1,17 +1,41 @@
 import { createNode } from "./Node.mjs";
 export const createBinarySearchTree = (inputArr) => {
 
+    const buildTree = (arr) => {
+        
+        const root = createNode(null, null, arr[parseInt(arr.length/2)]);
+        if (arr.length == 2){
+            root.left = buildTree(arr.slice(0, 1));
+
+        }else if(arr.length > 3){
+            const rightSubArr = arr.slice(0, arr.length/2);
+            const leftSubArr = arr.slice(arr.length/2 +1 , arr.length);
+            root.right = buildTree(rightSubArr);
+            root.left = buildTree(leftSubArr);
+  
+
+
+        }
+        return root;
+    };
+
     const removeDuplicates = (arr) => {
         return arr.filter((value, index) => arr.indexOf(value) === index);
     };
+
+
+
     const sortedUniqueArray = (arr) => {
         arr.sort((a, b) => {return a - b});
-        console.log(arr);
+        console.log(removeDuplicates(arr));
         return removeDuplicates(arr);
 
     };
+
+
     let arr = sortedUniqueArray(inputArr);
-    const _root = createNode(null, null, inputArr[inputArr.length/2]);
+    const _root = buildTree(arr);
+
     const insert = (value) => {
         let currentNode = _root;
         while (true){
@@ -36,13 +60,7 @@ export const createBinarySearchTree = (inputArr) => {
             
         }
     };
-    const buildTree = (arr) => {
-        for (let i = 1; i < arr.length; i++) {
-            insert(arr[i]);
-        }
-        return _root;
-    };
-    buildTree(arr);
+
 
 
 
@@ -87,5 +105,5 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     
-    return {prettyPrint, insert};
+    return {prettyPrint, insert, _root};
 }
