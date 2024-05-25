@@ -5,13 +5,13 @@ export const createBinarySearchTree = (inputArr) => {
         return arr.filter((value, index) => arr.indexOf(value) === index);
     };
     const sortedUniqueArray = (arr) => {
-        arr.sort();
-        console.log(arr);
+        arr.sort((a, b) => {return a - b});
         return removeDuplicates(arr);
 
     };
     let arr = sortedUniqueArray(inputArr);
-    const _root = createNode(null, null, arr[0]);
+    console.log(arr);
+    const _root = createNode(null, null, arr[arr.length/2]);
     const insert = (value) => {
         let currentNode = _root;
         while (true){
@@ -37,7 +37,6 @@ export const createBinarySearchTree = (inputArr) => {
         }
     };
     const buildTree = (arr) => {
-        // here build the tree
         for (let i = 1; i < arr.length; i++) {
             insert(arr[i]);
         }
@@ -86,8 +85,6 @@ export const createBinarySearchTree = (inputArr) => {
     const height = () => {
 
     };
-
-    // good for testing
 
     
     return {prettyPrint, insert};
