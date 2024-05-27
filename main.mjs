@@ -2,8 +2,11 @@ import { createBinarySearchTree } from "./BinarySearchTree.mjs";
 
 const arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = createBinarySearchTree(arr);
-tree.prettyPrint();
-console.log(tree.find(7));
+
+tree.remove(9);
+console.log(tree.find(9));
+
+
 
 tree.prettyPrint();
 

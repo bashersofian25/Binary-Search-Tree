@@ -3,7 +3,7 @@ export const createBinarySearchTree = (inputArr) => {
 
     const buildTree = (arr) => {
         
-        const root = createNode(null, null, arr[parseInt(arr.length/2)]);
+        let root = createNode(null, null, arr[parseInt(arr.length/2)]);
         if (arr.length == 2){
             root.left = buildTree(arr.slice(0, 1));
 
@@ -77,7 +77,12 @@ export const createBinarySearchTree = (inputArr) => {
     
 
 
-    const remove = () => {
+    const remove = (value) => {
+        // need to think a bit about some edge cases
+        let node = find(value);
+        if(node.right === null && node.left === null) { // leaf
+            
+        }
 
     };
 
@@ -89,11 +94,8 @@ export const createBinarySearchTree = (inputArr) => {
             }else if(currentNode.value === value){
                 return currentNode;
             }else if (currentNode.value > value) {
-                console.log("left:",currentNode.value);
                 currentNode = currentNode.left;
             }else if (currentNode.value < value) {
-                console.log("right:",currentNode.value);
-
                 currentNode = currentNode.right;
             }
         }
@@ -111,11 +113,11 @@ export const createBinarySearchTree = (inputArr) => {
 
     };
 
-    const height = () => {
+    const height = (node) => {
 
     };
 
-    const depth = () => {
+    const depth = (node) => {
 
     };
 
@@ -128,5 +130,5 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     
-    return {prettyPrint, insert, remove, find};
+    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth};
 }
