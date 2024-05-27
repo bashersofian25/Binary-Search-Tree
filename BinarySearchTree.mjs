@@ -115,6 +115,18 @@ export const createBinarySearchTree = (inputArr) => {
 
     };
 
+    const depth = () => {
+
+    };
+
+    const isBalanced = () => {
+
+    };
+
+    const rebalance = () => {
+
+    };
+
     
     return {prettyPrint, insert, remove, find};
 }
