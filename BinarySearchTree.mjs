@@ -73,18 +73,9 @@ export const createBinarySearchTree = (inputArr) => {
           prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
     };
+
+
     
-    
-
-
-    const remove = (value) => {
-        // need to think a bit about some edge cases
-        let node = find(value);
-        if(node.right === null && node.left === null) { // leaf
-            
-        }
-
-    };
 
     const find = (value) => {
         let currentNode = _root;
@@ -100,6 +91,30 @@ export const createBinarySearchTree = (inputArr) => {
             }
         }
     };
+
+    const changeRootOfSubTree = (root) => {
+        if(root.right === null && root.left === null){
+            console.log(root);
+            root.value = null;
+            return;
+        }
+        else if(root.right === null){
+            root.value = root.left.value;
+            changeRootOfSubTree(root.left);
+        }else{
+            if(root.value > root)
+            root.value = root.right.value;
+            changeRootOfSubTree(root.right);
+        }
+
+    };
+
+    const remove = (value) => {
+       let node = find(value);
+       changeRootOfSubTree(node);
+
+    };
+
 
     const inOrder = (callBack) => {
 
