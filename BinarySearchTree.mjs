@@ -92,19 +92,49 @@ export const createBinarySearchTree = (inputArr) => {
         }
     };
 
+    const handelNulls = (root) => {
+        if(root === null) {
+            return;
+        }
+        let right = root.right;
+        let left = root.left;
+
+        if(right !== null){
+            if(right.value === null){
+                root.right = null;
+            }
+        }
+        if(left !== null){
+            if(left.value === null){
+                root.left = null;
+            }
+        }
+        handelNulls(right);
+        handelNulls(left);
+    };
+
     const changeRootOfSubTree = (root) => {
         if(root.right === null && root.left === null){
-            console.log(root);
             root.value = null;
             return;
         }
         else if(root.right === null){
             root.value = root.left.value;
             changeRootOfSubTree(root.left);
-        }else{
-            if(root.value > root)
+        }else if (root.left === null){
             root.value = root.right.value;
             changeRootOfSubTree(root.right);
+        }else {
+            if(root.right.right === null){
+                root.value = root.left.value;
+                changeRootOfSubTree(root.left);
+            }else if (root.left.left === null) {
+                root.value = root.right.value;
+                changeRootOfSubTree(root.right);
+            }else {
+                root.value = root.right.value;
+                changeRootOfSubTree(root.right);
+            }
         }
 
     };
@@ -112,6 +142,7 @@ export const createBinarySearchTree = (inputArr) => {
     const remove = (value) => {
        let node = find(value);
        changeRootOfSubTree(node);
+       handelNulls(_root);
 
     };
 
