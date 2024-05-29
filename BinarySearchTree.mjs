@@ -188,6 +188,18 @@ export const createBinarySearchTree = (inputArr) => {
 
     const levelOrder = (callBack = (value) => {console.log(value)}) => {
         // need to use a Queue in this one, to keep reference
+        // using unshift and pop functions we can simulate a queue
+        const arr = [_root];
+        while (arr.length > 0) {
+            const visitedNode = arr.pop();
+            callBack(visitedNode.value);
+            if(visitedNode.left !== null){
+                arr.unshift(visitedNode.left);
+            }
+            if(visitedNode.right !== null){
+                arr.unshift(visitedNode.right);
+            }
+        }
 
     };
 
