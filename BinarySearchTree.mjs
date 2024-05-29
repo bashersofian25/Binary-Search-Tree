@@ -24,7 +24,6 @@ export const createBinarySearchTree = (inputArr) => {
 
     const sortedUniqueArray = (arr) => {
         arr.sort((a, b) => {return a - b});
-        console.log(removeDuplicates(arr));
         return removeDuplicates(arr);
 
     };
@@ -147,46 +146,61 @@ export const createBinarySearchTree = (inputArr) => {
 
     
 
-    const inOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+    const inOrder = (callBack = (value) => {}, node = _root) => {
+        let arr = [];
         const left = node.left;
         const right = node.right;
         if(left !== null) {
-            inOrder(callBack, left);
+            const leftArr = inOrder(callBack, left);
+            arr = arr.concat(leftArr);
         }
         callBack(node.value);
+        arr.push(node.value);
         if(right !== null) {
-            inOrder(callBack, right);
+            const rightArr = inOrder(callBack, right);
+            arr = arr.concat(rightArr);
         }
+        return arr;
     };
 
-    const preOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+    const preOrder = (callBack = (value) => {}, node = _root) => {
+        let arr = [];
         const left = node.left;
         const right = node.right;
         callBack(node.value);
+        arr.push(node.value);
         if(left !== null) {
-            inOrder(callBack, left);
+            const leftArr = preOrder(callBack, left);
+            arr = arr.concat(leftArr);
         }
         if(right !== null) {
-            inOrder(callBack, right);
+            const rightArr = preOrder(callBack, right);
+            arr = arr.concat(rightArr);
         }
+        
+        return arr;
 
     };
 
 
-    const postOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+    const postOrder = (callBack = (value) => {}, node = _root) => {
+        let arr = [];
         const left = node.left;
         const right = node.right;
         if(left !== null) {
-            inOrder(callBack, left);
+            const leftArr = postOrder(callBack, left);
+            arr = arr.concat(leftArr);
         }
         if(right !== null) {
-            inOrder(callBack, right);
+            const leftArr = postOrder(callBack, left);
+            arr = arr.concat(leftArr);
         }
         callBack(node.value);
-
+        arr.push(node.value);
+        return arr;
     };
 
-    const levelOrder = (callBack = (value) => {console.log(value)}) => {
+    const levelOrder = (callBack = (value) => {}) => {
         // need to use a Queue in this one, to keep reference
         // using unshift and pop functions we can simulate a queue
         const arr = [_root];
@@ -216,7 +230,7 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     const rebalance = () => {
-
+        // need to make traversal methods return an array to implement this
     };
 
     
