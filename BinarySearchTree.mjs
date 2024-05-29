@@ -172,6 +172,7 @@ export const createBinarySearchTree = (inputArr) => {
 
     };
 
+
     const postOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
         const left = node.left;
         const right = node.right;
@@ -182,6 +183,11 @@ export const createBinarySearchTree = (inputArr) => {
             inOrder(callBack, right);
         }
         callBack(node.value);
+
+    };
+
+    const levelOrder = (callBack = (value) => {console.log(value)}) => {
+        // need to use a Queue in this one, to keep reference
 
     };
 
@@ -202,5 +208,5 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     
-    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth};
+    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth, levelOrder};
 }
