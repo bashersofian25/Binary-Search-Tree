@@ -143,19 +143,45 @@ export const createBinarySearchTree = (inputArr) => {
        let node = find(value);
        changeRootOfSubTree(node);
        handelNulls(_root);
+    };
+
+    
+
+    const inOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+        const left = node.left;
+        const right = node.right;
+        if(left !== null) {
+            inOrder(callBack, left);
+        }
+        callBack(node.value);
+        if(right !== null) {
+            inOrder(callBack, right);
+        }
+    };
+
+    const preOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+        const left = node.left;
+        const right = node.right;
+        callBack(node.value);
+        if(left !== null) {
+            inOrder(callBack, left);
+        }
+        if(right !== null) {
+            inOrder(callBack, right);
+        }
 
     };
 
-
-    const inOrder = (callBack) => {
-
-    };
-
-    const preOrder = (callBack) => {
-
-    };
-
-    const postOrder = (callBack) => {
+    const postOrder = (callBack = (value) => {console.log(value)}, node = _root) => {
+        const left = node.left;
+        const right = node.right;
+        if(left !== null) {
+            inOrder(callBack, left);
+        }
+        if(right !== null) {
+            inOrder(callBack, right);
+        }
+        callBack(node.value);
 
     };
 
