@@ -30,7 +30,7 @@ export const createBinarySearchTree = (inputArr) => {
 
 
     let arr = sortedUniqueArray(inputArr);
-    const _root = buildTree(arr);
+    let _root = buildTree(arr);
 
     const insert = (value) => {
         let currentNode = _root;
@@ -218,8 +218,19 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     const height = (node) => {
-        // still need to figure this out
-
+        // find a way to increment i so that you get the height? is that going to work?
+        const arr = [node];
+        let i = 0;
+        while (arr.length > 0) {
+            const visitedNode = arr.pop();
+            if(visitedNode.left !== null){
+                arr.unshift(visitedNode.left);
+            }
+            if(visitedNode.right !== null){
+                arr.unshift(visitedNode.right);
+            }
+        }
+        return i;
     };
 
     const depth = (node) => {
@@ -237,11 +248,15 @@ export const createBinarySearchTree = (inputArr) => {
     const rebalance = () => {
         // need to make traversal methods return an array to implement this
         // we will get a sorted array from inOrder function and rebuild the tree, looks really inefficient
+        // (1) check if array is balanced
+        // (2) traves the tree and return an array
+        // (3) use array to build the tree again
 
-        // (1) traves the tree and return an array
-        // (2) use array to build the tree again
+
+        const arr = inOrder();
+        _root = buildTree(arr);
     };
 
     
-    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth, levelOrder};
+    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth, levelOrder, _root};
 }
