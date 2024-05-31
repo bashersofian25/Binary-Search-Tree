@@ -14,6 +14,7 @@ tree.rebalance();
 console.log(tree.isBalanced());
 
 console.log(tree.height(tree.root()));
+console.log(tree.depth(tree.find(8)));
 tree.prettyPrint(tree.root());
 tree.prettyPrint();
 

@@ -248,7 +248,21 @@ export const createBinarySearchTree = (inputArr) => {
     }
 
     const depth = (node) => {
-        // still need to figure this out
+        let currentNode = _root;
+        let i  = 0;
+        while (true) {
+            if(currentNode === null) {
+                return null;
+            }else if(currentNode.value === node.value){
+                return i;
+            }else if (currentNode.value > node.value) {
+                currentNode = currentNode.left;
+                i++;
+            }else if (currentNode.value < node.value) {
+                currentNode = currentNode.right;
+                i++;
+            }
+        }
 
     };
 
