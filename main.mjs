@@ -11,6 +11,7 @@ tree.insert(700);
 tree.insert(800);
 tree.insert(900);
 tree.rebalance();
+console.log(tree.isBalanced());
 
 console.log(tree.height(tree.root()));
 tree.prettyPrint(tree.root());

@@ -253,20 +253,10 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     const isBalanced = () => {
-        // this depends on the height method
-        // start from root and return the height of the right and left sides
-        // if the difference between them is less or equal to 1 then return true
-        // else return false
+        return (Math.abs(height(_root.left) - height(_root.right)) <= 1)? true: false; 
     };
 
     const rebalance = () => {
-        // need to make traversal methods return an array to implement this
-        // we will get a sorted array from inOrder function and rebuild the tree, looks really inefficient
-        // (1) check if array is balanced
-        // (2) traves the tree and return an array
-        // (3) use array to build the tree again
-
-
         const arr = inOrder();
         _root = buildTree(arr);
     };
