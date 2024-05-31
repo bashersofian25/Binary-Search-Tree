@@ -144,6 +144,9 @@ export const createBinarySearchTree = (inputArr) => {
        handelNulls(_root);
     };
 
+    const root = () => {
+        return _root;
+    };
     
 
     const inOrder = (callBack = (value) => {}, node = _root) => {
@@ -217,21 +220,32 @@ export const createBinarySearchTree = (inputArr) => {
 
     };
 
-    const height = (node) => {
+    const lengthToLeaf = (node) => {
         // find a way to increment i so that you get the height? is that going to work?
-        const arr = [node];
-        let i = 0;
-        while (arr.length > 0) {
-            const visitedNode = arr.pop();
-            if(visitedNode.left !== null){
-                arr.unshift(visitedNode.left);
-            }
-            if(visitedNode.right !== null){
-                arr.unshift(visitedNode.right);
-            }
+        // probably won't work
+        let theHeight = 0;
+        if(node.right === null && node.left === null) {
+            return 1;
+        }else if(node.right === null){
+            const left = node.left;
+            return lengthToLeaf(left) + 1;
+        }else if(node.left === null){
+            const right = node.right;
+            return lengthToLeaf(right)+1;
+        }else {
+            const left = node.left;
+            const right = node.right;
+    
+            theHeight = lengthToLeaf(left) > lengthToLeaf(right) ? lengthToLeaf(left)+1:lengthToLeaf(right)+1;
+    
+            return theHeight;
         }
-        return i;
+
     };
+
+    const height = (node) => {
+        return lengthToLeaf(node) -1 ;
+    }
 
     const depth = (node) => {
         // still need to figure this out
@@ -258,5 +272,5 @@ export const createBinarySearchTree = (inputArr) => {
     };
 
     
-    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth, levelOrder, _root};
+    return {prettyPrint, insert, remove, find, inOrder, postOrder, preOrder, isBalanced, rebalance, height, depth, levelOrder, root};
 }

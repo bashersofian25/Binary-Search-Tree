@@ -12,7 +12,7 @@ tree.insert(800);
 tree.insert(900);
 tree.rebalance();
 
-console.log(tree.height(tree._root));
-
+console.log(tree.height(tree.root()));
+tree.prettyPrint(tree.root());
 tree.prettyPrint();
 
